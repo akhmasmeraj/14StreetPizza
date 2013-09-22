@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <Button
+        android:id="@+id/StartOrder"
+        android:layout_width="250dip"
+        android:layout_height="150dip"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/createyourpizzaheading"
+        android:onClick="StartOrderClicked" />
+
+    <Button
+        android:id="@+id/PanicButton"
+        android:layout_width="150dip"
+        android:layout_height="150dip"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:background="@drawable/panic"
+        android:onClick="PanicButtonClicked" />
+
+</RelativeLayout>

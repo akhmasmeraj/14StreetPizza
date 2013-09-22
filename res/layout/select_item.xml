@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SelectItem" >
+
+    <Button
+        android:id="@+id/SideLines"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/Pizza"
+        android:layout_below="@+id/Pizza"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/sidelinesbutton"
+        android:text="" 
+        android:onClick="SideLinesClicked"/>
+
+    <Button
+        android:id="@+id/Pizza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/pizzaorderbutton"
+        android:text=""
+        android:onClick="PizzaClicked" />
+
+    <Button
+        android:id="@+id/Drinks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SideLines"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/drinksorderbutton"
+        android:text=""
+        android:onClick="DrinksClicked" />
+
+    <Button
+        android:id="@+id/SweetSomethings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Drinks"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/sweetsomethingsorderbutton"
+        android:text="" 
+        android:onClick="SweetSomethingClicked"/>
+
+    <Button
+        android:id="@+id/Deals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SweetSomethings"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/dealsorderbutton"
+        android:text=""
+        android:onClick="DealsClicked" />
+
+</RelativeLayout>
