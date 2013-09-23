@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 		 SharedPreferences settings =  PreferenceManager.getDefaultSharedPreferences(getBaseContext());                          
 	     
 		 int OrderNumbr = settings.getInt("OrderNumber", 0);
-		 if(OrderNumbr>=1)
+		 if(OrderNumbr>=7)
 		 {
 			 Button PanicBtn = (Button) findViewById(R.id.PanicButton);
 			 PanicBtn.setVisibility(View.VISIBLE);

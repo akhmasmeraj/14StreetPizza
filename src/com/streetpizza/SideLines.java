@@ -131,7 +131,10 @@ public class SideLines extends Activity {
 			
 				Log.e("Button", "Button Clicked");
 				
-				String Temp="";
+				//String Temp="";
+
+				String Temp = preferences.getString("Order","");
+				
 				for( int j=0;j< itemList.length;j++)
 				{
 					final int a =j;
@@ -147,6 +150,7 @@ public class SideLines extends Activity {
 			    	}
 					
 				}
+				
 				
 				  SharedPreferences.Editor editor = preferences.edit();
 				  editor.putString("Order",Temp);

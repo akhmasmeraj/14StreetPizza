@@ -1,8 +1,10 @@
 package com.streetpizza;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,10 +23,12 @@ import android.widget.TableRow.LayoutParams;
 
 public class SweetSomethings extends Activity {
 
-	String[] itemList = {"Chocolate Cake (Full) - Rs 2099",
-			"Chocolate Cake (Slice) - Rs 249"
+	String[][] itemList = {
+			{"Chocolate Cake (Full) - Rs 2099","2099"},
+			{"Chocolate Cake (Slice) - Rs 249","249"}
 };
 
+	SharedPreferences preferences;
 	
 	
 	@Override
@@ -32,6 +36,8 @@ public class SweetSomethings extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sweet_somethings);
 	
+		preferences = PreferenceManager.getDefaultSharedPreferences(this);
+		
 		
 		ScrollView scrollview = (ScrollView) findViewById(R.id.scrollView1);
 
@@ -62,7 +68,7 @@ public class SweetSomethings extends Activity {
 	            
 	            //Adding textviews
 		        textView = new TextView(getApplicationContext());
-		        textView.setText(itemList[i]);
+		        textView.setText(itemList[i][0]);
 		        textView.setPadding(15, 15, 15, 15);
 		       
 		        tableRow.addView(textView);
@@ -113,6 +119,32 @@ public class SweetSomethings extends Activity {
 				// TODO Auto-generated method stub
 			
 				Log.e("Button", "Button Clicked");
+				
+				String Temp = preferences.getString("Order","");
+				
+				for( int j=0;j< itemList.length;j++)
+				{
+					final int a =j;
+					Spinner spinner = (Spinner) findViewById(j);
+					if(spinner.getVisibility() == View.VISIBLE)
+			    	{
+			    	 //spinner.setVisibility(View.GONE);
+					//SelectedItems.add(itemList[a]);
+			    	Log.e("Selected Items", itemList[a][0] +" "+spinner.getSelectedItem().toString());
+			    	Temp=Temp + itemList[a][0] + "," + itemList[a][1] + "," + spinner.getSelectedItem().toString() + ",";
+			    	
+			    	
+			    	}
+					
+				}
+				
+				
+				  SharedPreferences.Editor editor = preferences.edit();
+				  editor.putString("Order",Temp);
+				  editor.commit();
+				
+			
+				
 				
 			}
 		});

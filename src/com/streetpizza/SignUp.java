@@ -202,17 +202,22 @@ class CreateOrder extends AsyncTask<String, String, String> {
     * Before starting background thread Show Progress Dialog
     * */
 	
-
+	EditText name= (EditText) findViewById(R.id.Name);
+	EditText email= (EditText) findViewById(R.id.Email);
+	EditText phone= (EditText) findViewById(R.id.Phone);
+	EditText address= (EditText) findViewById(R.id.Adress);
+	
+	
 	boolean failure = false;
 	
    @Override
    protected void onPreExecute() {
        super.onPreExecute();
-       pDialog = new ProgressDialog(SignUp.this);
-       pDialog.setMessage("Creating User...");
-       pDialog.setIndeterminate(false);
-       pDialog.setCancelable(true);
-       pDialog.show();
+       //pDialog = new ProgressDialog(SignUp.this);
+       //pDialog.setMessage("Creating User...");
+       //pDialog.setIndeterminate(false);
+       //pDialog.setCancelable(true);
+       //pDialog.show();
    }
 	
 	@Override
@@ -230,8 +235,11 @@ class CreateOrder extends AsyncTask<String, String, String> {
     	   Log.e("orderInAsyn", Order);
            // Building Parameters
            List<NameValuePair> params = new ArrayList<NameValuePair>();
-           params.add(new BasicNameValuePair("username", "sdsds"));
-           params.add(new BasicNameValuePair("password", "cxc"));
+           params.add(new BasicNameValuePair("order", Order));
+           params.add(new BasicNameValuePair("name", name.getText().toString()));
+           params.add(new BasicNameValuePair("email", email.getText().toString()));
+           params.add(new BasicNameValuePair("phone", phone.getText().toString()));
+           params.add(new BasicNameValuePair("address", address.getText().toString()));
 
            Log.d("request!", "starting");
            
@@ -265,9 +273,9 @@ class CreateOrder extends AsyncTask<String, String, String> {
     * **/
    protected void onPostExecute(String file_url) {
        // dismiss the dialog once product deleted
-       pDialog.dismiss();
+       //pDialog.dismiss();
        if (file_url != null){
-       	Toast.makeText(SignUp.this, file_url, Toast.LENGTH_LONG).show();
+       	//Toast.makeText(SignUp.this, file_url, Toast.LENGTH_LONG).show();
        }
 
    }

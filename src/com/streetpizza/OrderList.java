@@ -12,6 +12,7 @@ import android.graphics.Typeface;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -296,6 +297,32 @@ public class OrderList extends Activity {
 		getMenuInflater().inflate(R.menu.order_list, menu);
 		return true;
 	}
+
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+         
+        switch (item.getItemId())
+        {
+        case R.id.AddItem:
+            // Single menu item is selected do something
+            // Ex: launching new activity/screen or show alert message
+            Toast.makeText(OrderList.this, "Add Item is Selected", Toast.LENGTH_SHORT).show();
+            Intent myIntent = new Intent(OrderList.this, SelectItem.class);
+    		//myIntent.putExtra("key", value); //Optional parameters
+    		OrderList.this.startActivity(myIntent);
+    		OrderList.this.finish();
+    		return true;
+ 
+        
+
+ 
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }    
+
+
 
 }
 

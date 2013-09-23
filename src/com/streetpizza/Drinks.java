@@ -3,10 +3,12 @@ package com.streetpizza;
 import java.util.ArrayList;
 import java.util.HashMap;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,33 +33,36 @@ import android.widget.Toast;
 
 public class Drinks extends Activity {
 
-	String[] itemList = {"Apple Juice - Rs 60",
-			"Coke 1.5L - Rs 100",
-			"Coke 500ml - Rs 60",
-			"Diet Coke 1.5L - Rs 100",
-			"Diet Coke 500ml - Rs 65",
-			"Fanta 1.5L - Rs 100",
-			"Fanta 500ml - Rs 60",
-			"Mango Juice - Rs 60",
-			"Minute Maid Orange - Rs 60",
-			"Minute Maid Tropical - Rs 60",
-			"Orange Juice - Rs 60",
-			"Peach Juice - Rs 60",
-			"Pineapple Juice - Rs 60",
-			"Red Bull - Rs 175",
-			"Sprite 1.5L - Rs 100",
-			"Sprite 500ml - Rs 60",
-			"Sprite Zero 1.5L - Rs 100",
-			"Water (500ml) - Rs 40"
+	String[][] itemList = {
+			{"Apple Juice - Rs 60","60"},
+			{"Coke 1.5L - Rs 100","100"},
+			{"Coke 500ml - Rs 60","60"},
+			{"Diet Coke 1.5L - Rs 100","100"},
+			{"Diet Coke 500ml - Rs 65","65"},
+			{"Fanta 1.5L - Rs 100","100"},
+			{"Fanta 500ml - Rs 60","60"},
+			{"Mango Juice - Rs 60","60"},
+			{"Minute Maid Orange - Rs 60","60"},
+			{"Minute Maid Tropical - Rs 60","60"},
+			{"Orange Juice - Rs 60","60"},
+			{"Peach Juice - Rs 60","60"},
+			{"Pineapple Juice - Rs 60","60"},
+			{"Red Bull - Rs 175","60"},
+			{"Sprite 1.5L - Rs 100","60"},
+			{"Sprite 500ml - Rs 60","60"},
+			{"Sprite Zero 1.5L - Rs 100","60"},
+			{"Water (500ml) - Rs 40","60"}
 };
 
-	
+	SharedPreferences preferences;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.drinks);
 		 
+		preferences = PreferenceManager.getDefaultSharedPreferences(this);
+		
 		
 		ScrollView scrollview = (ScrollView) findViewById(R.id.scrollView1);
 
@@ -88,7 +93,7 @@ public class Drinks extends Activity {
 	            
 	            //Adding textviews
 		        textView = new TextView(getApplicationContext());
-		        textView.setText(itemList[i]);
+		        textView.setText(itemList[i][0]);
 		        textView.setPadding(15, 15, 15, 15);
 		       
 		        tableRow.addView(textView);
@@ -139,6 +144,32 @@ public class Drinks extends Activity {
 				// TODO Auto-generated method stub
 			
 				Log.e("Button", "Button Clicked");
+				
+				
+				String Temp = preferences.getString("Order","");
+				
+				for( int j=0;j< itemList.length;j++)
+				{
+					final int a =j;
+					Spinner spinner = (Spinner) findViewById(j);
+					if(spinner.getVisibility() == View.VISIBLE)
+			    	{
+			    	 //spinner.setVisibility(View.GONE);
+					//SelectedItems.add(itemList[a]);
+			    	Log.e("Selected Items", itemList[a][0] +" "+spinner.getSelectedItem().toString());
+			    	Temp=Temp + itemList[a][0] + "," + itemList[a][1] + "," + spinner.getSelectedItem().toString() + ",";
+			    	
+			    	
+			    	}
+					
+				}
+				
+				
+				  SharedPreferences.Editor editor = preferences.edit();
+				  editor.putString("Order",Temp);
+				  editor.commit();
+				
+				
 				
 			}
 		});

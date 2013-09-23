@@ -1,0 +1,4 @@
+1- Panic Button has been completely implemented
+2- Application has parse the json and send the order to server. You can see the orders on registers.php page under webservices.
+3-I have added the database with the name pizzastreet.sql
+4-Except deals page, every thing is working.
